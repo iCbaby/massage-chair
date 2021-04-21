@@ -1,0 +1,15 @@
+/**
+ * @description login router
+ * @author iC
+ */
+
+const Router = require('@koa/router')
+const router = new Router({ prefix: '/login' })
+const { login } = require('../controllers/login')
+const { genValidator } = require('../middlewares/validator')
+const loginValidate = require('../validators/login')
+
+router.use(genValidator(loginValidate))
+router.post('/', login)
+
+module.exports = router
