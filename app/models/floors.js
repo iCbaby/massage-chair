@@ -1,40 +1,30 @@
 /**
- * @description order schema 预约订单
+ * @description floor schema 楼层
  * @author iC
  */
 
 const mongoose = require('mongoose')
 const { Schema, model } = mongoose
 
-const orderSchema = new Schema(
+const floorSchema = new Schema(
   {
     __v: {
       type: Number,
       select: false
     },
-    user: {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
+    floorName: {
+      type: String,
+      trim: true,
       required: true
     },
-    date: {
-      type: Schema.Types.ObjectId,
-      ref: 'Date',
-      required: true
-    },
-    floor: {
-      type: Schema.Types.ObjectId,
-      ref: 'Floor',
-      required: true
+    count: {
+      type: Number,
+      min: 0,
+      default: 0
     },
     location: {
       type: Schema.Types.ObjectId,
       ref: 'Location',
-      required: true
-    },
-    period: {
-      type: Schema.Types.ObjectId,
-      ref: 'Period',
       required: true
     },
     tag: {
@@ -51,4 +41,4 @@ const orderSchema = new Schema(
   { timestamps: true }
 )
 
-module.exports = model('Order', orderSchema)
+module.exports = model('Floor', floorSchema)

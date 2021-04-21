@@ -9,24 +9,19 @@ const validate = require('./validate')
 const SCHEMA = {
   type: 'object',
   properties: {
-    cardType: {
+    user: {
       type: 'string'
     },
-    remark: {
-      type: 'string',
-      maxLength: 255,
-      minLength: 1
-    },
-    fromUserId: {
+    date: {
       type: 'string'
     },
-    toUserId: {
+    floor: {
       type: 'string'
     },
-    fromUserName: {
+    location: {
       type: 'string'
     },
-    toUserName: {
+    period: {
       type: 'string'
     }
   }

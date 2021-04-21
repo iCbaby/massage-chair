@@ -9,25 +9,26 @@ const validate = require('./validate')
 const SCHEMA = {
   type: 'object',
   properties: {
-    cardType: {
+    date: {
       type: 'string'
     },
-    remark: {
-      type: 'string',
-      maxLength: 255,
-      minLength: 1
-    },
-    fromUserId: {
+    dateStrartTime: {
       type: 'string'
     },
-    toUserId: {
+    dateEndTime: {
       type: 'string'
     },
-    fromUserName: {
-      type: 'string'
+    isMassageDate: {
+      type: 'boolean'
     },
-    toUserName: {
-      type: 'string'
+    canChooseDate: {
+      type: 'array'
+    },
+    dayOfWeek: {
+      type: 'number'
+    },
+    week: {
+      type: 'number'
     }
   }
 }

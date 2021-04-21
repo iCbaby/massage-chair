@@ -14,16 +14,16 @@
   "license": "ISC",
   "dependencies": {
     "@koa/router": "^10.0.0",
-    "ajv": "^7.0.0",
-    "axios": "^0.21.0",
-    "dayjs": "^1.9.7",
-    "koa": "^2.13.0",
+    "ajv": "^8.1.0",
+    "axios": "^0.21.1",
+    "dayjs": "^1.10.4",
+    "koa": "^2.13.1",
     "koa-body": "^4.2.0",
     "koa-json-error": "^3.1.2",
     "koa-logger": "^3.2.1",
     "koa-static": "^5.0.0",
     "log4js": "^6.3.0",
-    "mongoose": "^5.11.8",
+    "mongoose": "^5.12.5",
     "xlsx": "^0.16.9"
   },
   "devDependencies": {
