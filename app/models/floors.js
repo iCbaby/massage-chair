@@ -23,8 +23,10 @@ const floorSchema = new Schema(
       default: 0
     },
     location: {
-      type: Schema.Types.ObjectId,
-      ref: 'Location',
+      type: String
+    },
+    reservation: {
+      type: Object,
       required: true
     },
     tag: {

@@ -1,8 +1,10 @@
 const dayjs = require('dayjs')
 const weekOfYear = require('dayjs/plugin/weekOfYear')
+
+const DateClass = require('../app/models/dates')
+
 dayjs.extend(weekOfYear)
 
-const DateClass = require('./models/dates')
 let i = 0
 let dateObj = dayjs('2021-05-21')
 const massageDate = [
@@ -40,10 +42,7 @@ async function saveDate (params) {
     [1, 2, 3, 4].includes(dayOfWeek)
   ) {
     canChooseDate.push(dateObj.add(1, 'day').format('YYYY-MM-DD'))
-  } else if (
-    massageDate.includes(dateObj.add(3, 'day').format('YYYY-MM-DD')) &&
-    dayOfWeek === 5
-  ) {
+  } else if (massageDate.includes(dateObj.add(3, 'day').format('YYYY-MM-DD')) && dayOfWeek === 5) {
     canChooseDate.push(dateObj.add(3, 'day').format('YYYY-MM-DD'))
   } else if (formatDate === '2021-06-11') {
     canChooseDate.push('2021-06-15')
