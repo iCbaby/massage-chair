@@ -19,6 +19,10 @@ const userSchema = new Schema(
     name: {
       type: String,
       required: true
+    },
+    banWeek: {
+      type: Number,
+      default: 0
     }
   },
   { timestamps: true }
