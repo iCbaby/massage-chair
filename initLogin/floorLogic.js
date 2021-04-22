@@ -10,8 +10,8 @@ async function initFloor () {
   function setReservation (floor) {
     const copyList = JSON.parse(JSON.stringify(massageTimimg))
     copyList.forEach(item => {
-      item.startTime = item.timming.split('-')[0] + ':00'
-      item.endTime = item.timming.split('-')[1] + ':00'
+      item.startTime = item.timing.split('-')[0] + ':00'
+      item.endTime = item.timing.split('-')[1] + ':00'
       item.count = floor.count
     })
 

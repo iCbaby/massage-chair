@@ -13,28 +13,41 @@ const orderSchema = new Schema(
       select: false
     },
     user: {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
+      type: String,
+      trim: true,
+      required: true
+    },
+    userid: {
+      type: String,
+      trim: true,
       required: true
     },
     date: {
-      type: Schema.Types.ObjectId,
-      ref: 'Date',
+      type: String,
+      trim: true,
       required: true
     },
-    floor: {
-      type: Schema.Types.ObjectId,
-      ref: 'Floor',
+    floorName: {
+      type: String,
+      trim: true,
       required: true
     },
     location: {
-      type: Schema.Types.ObjectId,
-      ref: 'Location',
+      type: String,
+      trim: true,
       required: true
     },
-    period: {
-      type: Schema.Types.ObjectId,
-      ref: 'Period',
+    timing: {
+      type: String,
+      trim: true,
+      required: true
+    },
+    dayOfWeek: {
+      type: Number,
+      required: true
+    },
+    status: {
+      type: Number,
       required: true
     },
     tag: {

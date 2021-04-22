@@ -14,9 +14,13 @@ const app = new Koa()
 const routing = require('./routes')
 const { connectionStr, mongoConfig } = require('./config/dbConf')
 
+// const { initDate } = require('../initLogin/dateLogic')
+// const { initFloor } = require('../initLogin/floorLogic')
 // 启动数据库
 mongoose.connect(connectionStr, mongoConfig).then(async () => {
   console.log('MongoDB 连接成功了！！')
+  // initDate()
+  // initFloor()
 })
 mongoose.connection.on('error', console.error)
 

@@ -4,8 +4,7 @@
  */
 
 module.exports = {
-  CANT_SEND_TO_MYSELF: '感谢卡不能发送给自己',
-  CARD_TYPE_ERROR: '卡类型输入错误',
-  CANT_FIND_FROMUSER: '感谢卡找不到发卡用户',
-  CANT_FIND_TOUSER: '感谢卡找不到收卡用户'
+  ONE_DAY_ONE_TIME: '每人每天限预约1次，您当天已预约满额',
+  ONE_WEEK_TWO_TIMES: '每人每周最多预约2次，您本周已预约满额',
+  NO_COUNT: '该时间段已约满'
 }

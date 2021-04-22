@@ -12,16 +12,19 @@ const SCHEMA = {
     user: {
       type: 'string'
     },
+    userid: {
+      type: 'string'
+    },
     date: {
       type: 'string'
     },
-    floor: {
+    floorName: {
       type: 'string'
     },
     location: {
       type: 'string'
     },
-    period: {
+    timing: {
       type: 'string'
     }
   }
