@@ -67,12 +67,12 @@ const locationList = [
     location: '中悦'
   },
   {
-    floorName: '健身房',
+    floorName: '西馆健身房',
     count: 2,
     location: '西馆'
   },
   {
-    floorName: '休闲区',
+    floorName: '北塔休闲区',
     count: 2,
     location: '北塔'
   }
