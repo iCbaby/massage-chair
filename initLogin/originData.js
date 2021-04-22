@@ -13,7 +13,7 @@ const massageDate = [
   '2021-06-11',
   '2021-06-15',
   '2021-06-16',
-  '2021-06-17'
+  '2021-06-17' // 14日
 ]
 
 // 初始时间段
@@ -36,7 +36,7 @@ const massageTimimg = [
   { timing: '17:30-17:50' },
   { timing: '17:55-18:15' },
   { timing: '18:20-18:40' },
-  { timing: '18:45-19:05' }
+  { timing: '18:45-19:05' } // 19个时间段
 ]
 
 // floor数据
@@ -75,7 +75,7 @@ const locationList = [
     floorName: '北塔休闲区',
     count: 2,
     location: '北塔'
-  }
+  } // 7个办公区
 ]
 
 module.exports = { massageDate, massageTimimg, locationList }

@@ -15,11 +15,13 @@ const orderSchema = new Schema(
     user: {
       type: String,
       trim: true,
+      index: true,
       required: true
     },
     userid: {
       type: String,
       trim: true,
+      index: true,
       required: true
     },
     date: {

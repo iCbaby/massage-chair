@@ -1,12 +1,12 @@
 /**
- * @description floor schema 楼层
+ * @description reservations schema 楼层
  * @author iC
  */
 
 const mongoose = require('mongoose')
 const { Schema, model } = mongoose
 
-const floorSchema = new Schema(
+const reservationSchema = new Schema(
   {
     __v: {
       type: Number,
@@ -15,15 +15,34 @@ const floorSchema = new Schema(
     floorName: {
       type: String,
       trim: true,
+      index: true,
+      required: true
+    },
+    date: {
+      type: String,
+      trim: true,
+      index: true,
+      required: true
+    },
+    timing: {
+      type: String,
+      trim: true,
+      required: true
+    },
+    startTime: {
+      type: String,
+      trim: true,
+      required: true
+    },
+    endTime: {
+      type: String,
+      trim: true,
       required: true
     },
     count: {
       type: Number,
       min: 0,
       default: 0
-    },
-    location: {
-      type: String
     },
     tag: {
       type: String,
@@ -39,4 +58,4 @@ const floorSchema = new Schema(
   { timestamps: true }
 )
 
-module.exports = model('Floor', floorSchema)
+module.exports = model('Reservation', reservationSchema)
