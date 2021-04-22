@@ -8,4 +8,4 @@ async function initLocation () {
   ])
 }
 
-initLocation()
+module.exports = { initLocation }

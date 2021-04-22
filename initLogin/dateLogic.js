@@ -1,41 +1,23 @@
 const dayjs = require('dayjs')
 const weekOfYear = require('dayjs/plugin/weekOfYear')
-
+const { massageDate } = require('./originData')
 const DateClass = require('../app/models/dates')
 
 dayjs.extend(weekOfYear)
 
 let i = 0
-let dateObj = dayjs('2021-05-21')
-const massageDate = [
-  '2021-05-24',
-  '2021-05-26',
-  '2021-05-28',
-  '2021-05-31',
-  '2021-06-02',
-  '2021-06-04',
-  '2021-06-07',
-  '2021-06-08',
-  '2021-06-09',
-  '2021-06-10',
-  '2021-06-11',
-  '2021-06-15',
-  '2021-06-16',
-  '2021-06-17'
-]
+let dateObj = dayjs('2021-05-21') // 日期的初始dayjs对象
 
-async function saveDate (params) {
+async function initDate (params) {
   if (i >= 28) return
 
-  const formatDate = dateObj.format('YYYY-MM-DD')
+  const formatDate = dateObj.format('YYYY-MM-DD') // 格式化完年月日的日期
 
   const isMassageDate = massageDate.includes(formatDate)
   const canChooseDate = []
-  const dayOfWeek = dateObj.day()
+  const dayOfWeek = dateObj.day() // 星期几 0星期日,6星期六
 
-  if (isMassageDate) {
-    canChooseDate.push(formatDate)
-  }
+  if (isMassageDate) canChooseDate.push(formatDate)
 
   if (
     massageDate.includes(dateObj.add(1, 'day').format('YYYY-MM-DD')) &&
@@ -61,10 +43,10 @@ async function saveDate (params) {
   }
   await new DateClass(data).save()
 
-  dateObj = dateObj.add(1, 'day')
+  dateObj = dateObj.add(1, 'day') // 加一日
   i++
 
-  saveDate()
+  initDate()
 }
 
-saveDate()
+module.exports = { initDate }

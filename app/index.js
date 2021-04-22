@@ -15,7 +15,9 @@ const routing = require('./routes')
 const { connectionStr, mongoConfig } = require('./config/dbConf')
 
 // 启动数据库
-mongoose.connect(connectionStr, mongoConfig).then(async () => console.log('MongoDB 连接成功了！！'))
+mongoose.connect(connectionStr, mongoConfig).then(async () => {
+  console.log('MongoDB 连接成功了！！')
+})
 mongoose.connection.on('error', console.error)
 
 // koa中间件
