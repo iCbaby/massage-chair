@@ -1,17 +1,17 @@
 /**
- * @description floor service
+ * @description reservation service
  * @author iC
  */
 
-const FloorModel = require('../models/floors')
+const ReservationModel = require('../models/reservations')
 
-class FloorsServ {
+class ReservationsServ {
   /**
    * 查找某日某地点的楼层信息
    * @param {Object} params 查询条件
    */
   async find (params = {}, date) {
-    const floors = await FloorModel.find(params).sort({ _id: 1 })
+    const floors = await ReservationModel.find(params).sort({ _id: 1 })
     return floors
   }
 
@@ -20,9 +20,9 @@ class FloorsServ {
   //  * @param {Object} params 查询条件
   //  */
   // async findOneAndUpdate (params = {}, modeify = {}) {
-  //   const floors = await FloorModel.findOneAndUpdate(params, modeify, { new: true })
+  //   const floors = await ReservationModel.findOneAndUpdate(params, modeify, { new: true })
   //   return floors
   // }
 }
 
-module.exports = new FloorsServ()
+module.exports = new ReservationsServ()

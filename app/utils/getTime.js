@@ -10,7 +10,7 @@ const dayjs = require('dayjs')
  * @param  {String} date 自定义日期
  * @param  {String} format 格式化
  */
-function getTime (date = '', format = 'YYYY-MM-DD HH:mm:ss') {
+function getTime (date = undefined, format = 'YYYY-MM-DD HH:mm:ss') {
   return dayjs(date).format(format)
 }
 

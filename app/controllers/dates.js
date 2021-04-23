@@ -20,7 +20,8 @@ class DatesCtl {
       const dates = await find(query)
       ctx.body = {
         currentTime,
-        dates
+        dates,
+        msg: 'ok'
       }
     } catch (error) {
       console.error(error)

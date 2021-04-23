@@ -20,10 +20,11 @@ class FloorsCtl {
     const currentTime = getTime()
     const query = { location }
 
-    const floors = await find(query, date)
+    const floors = await find(query)
     ctx.body = {
       currentTime,
-      floors
+      floors,
+      msg: 'ok'
     }
   }
 }
