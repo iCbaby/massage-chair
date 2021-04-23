@@ -27,6 +27,7 @@ const reservationSchema = new Schema(
     timing: {
       type: String,
       trim: true,
+      index: true,
       required: true
     },
     startTime: {

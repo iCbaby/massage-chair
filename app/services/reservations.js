@@ -11,18 +11,18 @@ class ReservationsServ {
    * @param {Object} params 查询条件
    */
   async find (params = {}, date) {
-    const floors = await ReservationModel.find(params).sort({ _id: 1 })
-    return floors
+    const reservations = await ReservationModel.find(params).sort({ _id: 1 })
+    return reservations
   }
 
-  // /**
-  //  * 修改楼层信息
-  //  * @param {Object} params 查询条件
-  //  */
-  // async findOneAndUpdate (params = {}, modeify = {}) {
-  //   const floors = await ReservationModel.findOneAndUpdate(params, modeify, { new: true })
-  //   return floors
-  // }
+  /**
+   * 修改预约时间段信息
+   * @param {Object} params 查询条件
+   */
+  async findOneAndUpdate (params = {}, modeify = {}) {
+    const reservation = await ReservationModel.findOneAndUpdate(params, modeify, { new: true })
+    return reservation
+  }
 }
 
 module.exports = new ReservationsServ()

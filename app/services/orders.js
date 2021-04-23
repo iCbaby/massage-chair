@@ -23,6 +23,15 @@ class OrdersServ {
     const orders = await OrderModel.find(params).sort({ _id: -1 })
     return orders
   }
+
+  /**
+   * 查找订单
+   * @param {Object} params 查询条件
+   */
+  async findById (id) {
+    const order = await OrderModel.findById(id)
+    return order
+  }
 }
 
 module.exports = new OrdersServ()
