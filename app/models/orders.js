@@ -50,7 +50,13 @@ const orderSchema = new Schema(
     },
     status: {
       type: Number,
+      index: true,
       required: true
+    },
+    dingTimes: {
+      type: Number,
+      index: true,
+      default: 2
     },
     tag: {
       type: String,
