@@ -17,12 +17,14 @@ const { connectionStr, mongoConfig } = require('./config/dbConf')
 // const { initDate } = require('../initLogin/dateLogic')
 // const { initFloor } = require('../initLogin/floorLogic')
 // const { initReservation } = require('../initLogin/reservationLogic')
+const { ordersSchedule } = require('./jobs')
 // 启动数据库
 mongoose.connect(connectionStr, mongoConfig).then(async () => {
   console.log('MongoDB 连接成功了！！')
   // initDate()
   // initFloor()
   // initReservation()
+  ordersSchedule()
 })
 mongoose.connection.on('error', console.error)
 

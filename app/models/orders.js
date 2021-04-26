@@ -53,9 +53,15 @@ const orderSchema = new Schema(
       index: true,
       required: true
     },
+    startTimeStamp: {
+      type: Number,
+      index: true,
+      required: true
+    },
     dingTimes: {
       type: Number,
       index: true,
+      min: 0,
       default: 2
     },
     tag: {

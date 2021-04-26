@@ -32,6 +32,16 @@ class OrdersServ {
     const order = await OrderModel.findById(id)
     return order
   }
+
+  /**
+   * 修改多个订单
+   * @param {Object} params 查询条件
+   * @param {Object} update 修改条件
+   */
+  async updateMany (params, modeify) {
+    const orders = await OrderModel.updateMany(params, modeify)
+    return orders
+  }
 }
 
 module.exports = new OrdersServ()

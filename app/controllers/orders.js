@@ -7,9 +7,7 @@ const dayjs = require('dayjs')
 const weekOfYear = require('dayjs/plugin/weekOfYear')
 const mongoose = require('mongoose')
 const { getTime } = require('../utils/getTime')
-const axios = require('axios').default
-const { getCorpconversationUrl } = require('../apis/dingDing')
-const { AGENT_ID } = require('../config/dingConf')
+const { sendCorpconversation } = require('../utils/sendCorpconversation')
 const { create, find, findById } = require('../services/orders')
 const {
   find: findReservations,
@@ -79,12 +77,11 @@ class OrdersCtl {
       const params = copyObj(ctx.request.body)
       params.dayOfWeek = dayOfWeek
       params.status = 1
+      params.dingTimes = 2
+      params.startTimeStamp = new Date(`${date} ${timing.split('-')[0]}:00`).getTime()
 
       // 执行
-      // const [order] = await Promise.all([create(params), targetReservations[0].save()])
-      const [order] = await Promise.all([create(params)])
-      // 给下个中间件
-      ctx.state.order = order
+      await Promise.all([create(params), targetReservations[0].save()])
 
       ctx.status = 204
     })
@@ -112,10 +109,11 @@ class OrdersCtl {
       // 修改订单状态 + 释放时间段
       order.status = 0
       const { floorName, timing, date } = order
-      await Promise.all([
+      const [newOrder] = await Promise.all([
         order.save(),
         findOneAndUpdateReservation({ floorName, timing, date }, { $inc: { count: 1 } })
       ])
+      ctx.state.order = newOrder
 
       ctx.status = 204
     })
@@ -127,77 +125,8 @@ class OrdersCtl {
    * @param {Object} ctx 上下文
    */
   async setDing (ctx) {
-    const { _id, userid, date, timing } = ctx.state.order
-
     // 立刻ding对方
-    this.sendCorpconversation({ _id, userid, date, timing })
-
-    // 埋定时器
-    const currentTime = new Date().getTime() // 现在的时间戳
-    const masaageTime = new Date(`${date} ${timing.split('-')[0]}:00`).getTime() // 预约开始的时间戳
-    const diff = (masaageTime - currentTime) / 60000 // 两者相差的分钟
-    const halfHourStamp = masaageTime - 30000 - currentTime // 距离开始预约半小时的时间戳
-
-    if (diff > 60) {
-      // 距离开始预约一小时的时间戳
-      const oneHourStamp = masaageTime - 60000 - currentTime
-      setTimeout(() => {
-        this.sendCorpconversation({ _id, userid, date, timing, hourText: '1小时' })
-      }, oneHourStamp)
-      setTimeout(() => {
-        this.sendCorpconversation({ _id, userid, date, timing, hourText: '半小时' })
-      }, halfHourStamp)
-    } else if (diff < 60 && diff > 30) {
-      setTimeout(() => {
-        this.sendCorpconversation({ _id, userid, date, timing, hourText: '半小时' })
-      }, halfHourStamp)
-    }
-  }
-
-  /**
-   * 发钉钉消息
-   * @param {Object} obj ding信息
-   */
-  async sendCorpconversation ({ _id, userid, hourText, date, timing }) {
-    const order = await find({ _id, status: 1 })
-    if (!order.length) return
-
-    const str = hourText
-      ? `亲爱的大赢家，您预约的空中舒压舱将在${hourText}后开始，请提前5分钟至舒压舱并扫码签到哦！一周内若未签到2次，将被锁定一周的预约资格！`
-      : `亲爱的大赢家，您预约的空中舒压舱将在${date} ${
-          timing.split('-')[0]
-        }:00后开始，请提前5分钟至舒压舱并扫码签到哦！一周内若未签到2次，将被锁定一周的预约资格！`
-
-    const url = await getCorpconversationUrl()
-    await axios.post(url, {
-      agent_id: AGENT_ID,
-      userid_list: userid,
-      msg: {
-        msgtype: 'oa',
-        oa: {
-          message_url: 'eapp://pages/mine/mine',
-          head: {
-            bgcolor: 'FFBBBBBB',
-            text: '头部标题'
-          },
-          body: {
-            title: '空中舒压舱提醒您',
-            form: [
-              {
-                key: '提醒',
-                value: str
-              },
-              {
-                key: '发送时间：',
-                value: getTime()
-              }
-            ],
-            content: '请点击进入小程序查看',
-            author: '空中舒压舱'
-          }
-        }
-      }
-    })
+    sendCorpconversation(ctx.state.order)
   }
 }
 
