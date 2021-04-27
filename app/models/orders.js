@@ -58,11 +58,15 @@ const orderSchema = new Schema(
       index: true,
       required: true
     },
-    dingTimes: {
-      type: Number,
+    dingOneHour: {
+      type: Boolean,
       index: true,
-      min: 0,
-      default: 2
+      default: false
+    },
+    dingHalfHour: {
+      type: Boolean,
+      index: true,
+      default: false
     },
     tag: {
       type: String,

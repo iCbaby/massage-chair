@@ -77,16 +77,19 @@ class OrdersCtl {
       const params = copyObj(ctx.request.body)
       params.dayOfWeek = dayOfWeek
       params.status = 1
-      params.dingTimes = 2
+      params.dingOneHour = false
+      params.dingHalfHour = false
       params.startTimeStamp = new Date(`${date} ${timing.split('-')[0]}:00`).getTime()
 
       // 执行
-      await Promise.all([create(params), targetReservations[0].save()])
+      const [newoOder] = await Promise.all([create(params), targetReservations[0].save()])
 
       ctx.status = 204
+      ctx.state.order = newoOder
+
+      await next()
     })
     session.endSession()
-    await next()
   }
 
   /**
@@ -95,12 +98,11 @@ class OrdersCtl {
    */
   async cancelReserve (ctx, next) {
     // 是否符合取消条件
-    const currentTime = new Date().getTime()
+    const currentTimeStamp = new Date().getTime()
     const { id } = ctx.params
     const order = await findById(id)
-    const startTimeStr = `${order.date} ${order.timing.split('-')[0]}:00`
-    const startTime = new Date(startTimeStr).getTime()
-    const diff = startTime - currentTime < 60000 // 现在距离预约时间是否少于1小时
+    const { startTimeStamp } = order
+    const diff = startTimeStamp - currentTimeStamp < 60000 // 现在距离预约时间是否少于1小时
     if (diff) ctx.throw(403, CANT_CANCEL)
 
     // 取消

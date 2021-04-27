@@ -35,7 +35,7 @@ async function sendCorpconversation ({ userid, date, timing, hourText }) {
           title: '空中舒压舱提醒您',
           form: [
             {
-              key: '提醒',
+              key: '提醒：',
               value: str
             },
             {

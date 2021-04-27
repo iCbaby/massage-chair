@@ -13,43 +13,43 @@ async function ordersSchedule () {
     const currentStamp = new Date().getTime()
     const queryOneHour = {
       startTimeStamp: {
-        $gte: currentStamp + 59000,
-        $lt: currentStamp + 61000
+        $gte: currentStamp + 3540000,
+        $lt: currentStamp + 3660000
       },
-      dingTimes: 2,
+      dingOneHour: false,
       status: 1
     }
-
     const queryHalfHour = {
       startTimeStamp: {
-        $gte: currentStamp + 29000,
-        $lt: currentStamp + 31000
+        $gte: currentStamp + 1740000,
+        $lt: currentStamp + 1860000
       },
-      dingTimes: 1,
+      dingHalfHour: false,
       status: 1
     }
-
-    const [ordersOne, ordersHalf] = await Promise.all(find(queryOneHour), find(queryHalfHour))
+    const [ordersOne, ordersHalf] = await Promise.all([find(queryOneHour), find(queryHalfHour)])
 
     // ding他们
     if (ordersOne.length) {
-      // 减去dingTimes
-      await updateMany(queryOneHour, { $inc: { dingTimes: 1 } })
+      await updateMany(queryOneHour, { $set: { dingOneHour: true } })
 
       let oneHourUseridList = ''
       ordersOne.forEach(item => (oneHourUseridList += item.userid + ','))
       oneHourUseridList = oneHourUseridList.substring(0, oneHourUseridList.length - 1)
-      sendCorpconversation({ ...ordersOne[0], userid: oneHourUseridList })
+      sendCorpconversation({ ...ordersOne[0]._doc, userid: oneHourUseridList, hourText: '一小时' })
     }
 
     if (ordersHalf.length) {
-      // 减去dingTimes
-      await updateMany(queryHalfHour, { $inc: { dingTimes: 1 } })
+      await updateMany(queryHalfHour, { $set: { dingHalfHour: true } })
 
       let halfHourUseridList = ''
-      ordersOne.forEach(item => (halfHourUseridList += item.userid + ','))
+      ordersHalf.forEach(item => (halfHourUseridList += item.userid + ','))
       halfHourUseridList = halfHourUseridList.substring(0, halfHourUseridList.length - 1)
-      sendCorpconversation({ ...ordersOne[0], userid: halfHourUseridList })
+      sendCorpconversation({
+        ...ordersHalf[0]._doc,
+        userid: halfHourUseridList,
+        hourText: '半小时'
+      })
     }
   })
 }
