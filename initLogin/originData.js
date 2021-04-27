@@ -18,6 +18,7 @@ const massageDate = [
 
 // 初始时间段
 const massageTimimg = [
+  { timing: '10:00-10:20' },
   { timing: '10:25-10:45' },
   { timing: '10:50-11:10' },
   { timing: '11:15-11:35' },
@@ -36,7 +37,7 @@ const massageTimimg = [
   { timing: '17:30-17:50' },
   { timing: '17:55-18:15' },
   { timing: '18:20-18:40' },
-  { timing: '18:45-19:05' } // 19个时间段
+  { timing: '18:45-19:05' } // 20个时间段
 ]
 
 // floor数据
