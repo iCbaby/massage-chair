@@ -5,6 +5,7 @@
 
 const axios = require('axios').default
 const { getUserIdUrl } = require('../apis/dingDing')
+const { create } = require('../services/users')
 
 class LoginCtrl {
   /**
@@ -15,6 +16,12 @@ class LoginCtrl {
     const { authCode } = ctx.request.body
     const url = await getUserIdUrl(authCode)
     const { data } = await axios.get(url)
+    const params = {
+      name: data.name,
+      userid: data.userid,
+      banWeek: 0
+    }
+    await create(params)
     ctx.body = data
   }
 }

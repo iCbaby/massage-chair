@@ -14,7 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@koa/router": "^10.0.0",
-    "ajv": "^8.1.0",
+    "ajv": "^8.2.0",
     "axios": "^0.21.1",
     "dayjs": "^1.10.4",
     "koa": "^2.13.1",
@@ -23,13 +23,13 @@
     "koa-logger": "^3.2.1",
     "koa-static": "^5.0.0",
     "log4js": "^6.3.0",
-    "mongoose": "^5.12.5",
+    "mongoose": "^5.12.6",
     "node-cron": "^3.0.0",
     "xlsx": "^0.16.9"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "eslint": "^7.24.0",
+    "eslint": "^7.25.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
