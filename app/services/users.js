@@ -17,11 +17,20 @@ class UsersServ {
 
   /**
    * 查找用户列表
+   * @param {Object} params 参数
+   */
+  async find (params) {
+    const users = await UserModel.find(params)
+    return users
+  }
+
+  /**
+   * 查找用户
    * @param {String} id id
    */
   async findById (id) {
-    const dates = await UserModel.findById(id)
-    return dates
+    const user = await UserModel.findById(id)
+    return user
   }
 }
 

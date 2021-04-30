@@ -9,12 +9,19 @@ const mongoose = require('mongoose')
 const { getTime } = require('../utils/getTime')
 const { sendCorpconversation } = require('../utils/sendCorpconversation')
 const { create, find, findById } = require('../services/orders')
+const { find: findUser } = require('../services/users')
 const {
   find: findReservations,
   findOneAndUpdate: findOneAndUpdateReservation
 } = require('../services/reservations')
 const { requiredValidator } = require('../utils/requiredValidator')
-const { ONE_DAY_ONE_TIME, ONE_WEEK_TWO_TIMES, NO_COUNT, CANT_CANCEL } = require('../errors/orders')
+const {
+  ONE_DAY_ONE_TIME,
+  ONE_WEEK_TWO_TIMES,
+  NO_COUNT,
+  CANT_CANCEL,
+  BAN_ORDER
+} = require('../errors/orders')
 const { copyObj } = require('../utils/copyObj')
 
 dayjs.extend(weekOfYear)
@@ -45,15 +52,17 @@ class OrdersCtl {
     requiredValidator(['user', 'userid', 'date', 'floorName', 'location', 'timing'], ctx)
 
     // 惩罚(后面再补充)
+    const { userid, date } = ctx.request.body
+    const dayOfWeek = dayjs(date).week()
+    const banUser = findUser({ userid, dayOfWeek })
+    if (banUser.length) ctx.throw(403, BAN_ORDER)
 
     // 判断今日预约过未
     const status = 1
-    const { userid, date } = ctx.request.body
     const todayOrders = await find({ userid, date, status })
     if (todayOrders.length) ctx.throw(403, ONE_DAY_ONE_TIME)
 
     // 判断这周预约是否超过两单
-    const dayOfWeek = dayjs(date).week()
     const weekOrders = await find({ userid, dayOfWeek, status })
     if (weekOrders.length >= 2) ctx.throw(403, ONE_WEEK_TWO_TIMES)
 
