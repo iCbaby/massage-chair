@@ -12,6 +12,6 @@ const orderValidate = require('../validators/orders')
 router.use(genValidator(orderValidate))
 router.get('/', findOrders)
 router.post('/', reserve, setDing)
-router.delete('/cancel/:id', cancelReserve)
+router.post('/cancel/:id', cancelReserve)
 
 module.exports = router

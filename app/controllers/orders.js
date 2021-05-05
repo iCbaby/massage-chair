@@ -54,7 +54,7 @@ class OrdersCtl {
     // 惩罚(后面再补充)
     const { userid, date } = ctx.request.body
     const dayOfWeek = dayjs(date).week()
-    const banUser = findUser({ userid, dayOfWeek })
+    const banUser = await findUser({ userid, banWeek: dayOfWeek })
     if (banUser.length) ctx.throw(403, BAN_ORDER)
 
     // 判断今日预约过未
@@ -111,7 +111,7 @@ class OrdersCtl {
     const { id } = ctx.params
     const order = await findById(id)
     const { startTimeStamp } = order
-    const diff = startTimeStamp - currentTimeStamp < 60000 // 现在距离预约时间是否少于1小时
+    const diff = startTimeStamp - currentTimeStamp < 3600000 // 现在距离预约时间是否少于1小时
     if (diff) ctx.throw(403, CANT_CANCEL)
 
     // 取消
