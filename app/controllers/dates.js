@@ -13,7 +13,7 @@ class DatesCtl {
    */
   async findDates (ctx) {
     try {
-      const currentTime = getTime('2021-05-21')
+      const currentTime = getTime() // 控制模拟请求日期
       const query = {
         date: currentTime.split(' ')[0]
       }

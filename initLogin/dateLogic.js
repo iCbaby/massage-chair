@@ -6,7 +6,7 @@ const DateClass = require('../app/models/dates')
 dayjs.extend(weekOfYear)
 
 let i = 0
-let dateObj = dayjs('2021-05-21') // 日期的初始dayjs对象
+let dateObj = dayjs() // 日期的初始dayjs对象。控制模拟 确定几时开始算
 
 async function initDate (params) {
   if (i >= 28) return

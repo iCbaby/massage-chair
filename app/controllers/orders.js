@@ -51,7 +51,7 @@ class OrdersCtl {
     // 校验参数
     requiredValidator(['user', 'userid', 'date', 'floorName', 'location', 'timing'], ctx)
 
-    // 惩罚(后面再补充)
+    // 惩罚
     const { userid, date } = ctx.request.body
     const dayOfWeek = dayjs(date).week()
     const banUser = await findUser({ userid, banWeek: dayOfWeek })
