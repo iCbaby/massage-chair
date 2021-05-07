@@ -6,7 +6,7 @@ const DateClass = require('../app/models/dates')
 dayjs.extend(weekOfYear)
 
 let i = 0
-let dateObj = dayjs() // 日期的初始dayjs对象。控制模拟 确定几时开始算
+let dateObj = dayjs('2021-05-21') // 日期的初始dayjs对象。2021-05-21开始算
 
 async function initDate (params) {
   if (i >= 28) return
@@ -23,7 +23,8 @@ async function initDate (params) {
     massageDate.includes(dateObj.add(1, 'day').format('YYYY-MM-DD')) &&
     [1, 2, 3, 4].includes(dayOfWeek)
   ) {
-    canChooseDate.push(dateObj.add(1, 'day').format('YYYY-MM-DD'))
+    // 6.14这日端午放假
+    if (formatDate !== '2021-06-14') canChooseDate.push(dateObj.add(1, 'day').format('YYYY-MM-DD'))
   } else if (massageDate.includes(dateObj.add(3, 'day').format('YYYY-MM-DD')) && dayOfWeek === 5) {
     canChooseDate.push(dateObj.add(3, 'day').format('YYYY-MM-DD'))
   } else if (formatDate === '2021-06-11') {
