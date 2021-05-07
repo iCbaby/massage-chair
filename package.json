@@ -1,7 +1,7 @@
 {
-  "name": "massage-chair",
+  "name": "massage-chair-server",
   "version": "1.0.0",
-  "description": "618按摩椅",
+  "description": "618舒压舱",
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production node app",
@@ -10,7 +10,7 @@
     "lint": "eslint --ext .js app",
     "format": "prettier-standard --format"
   },
-  "author": "iC",
+  "author": "飞翔",
   "license": "ISC",
   "dependencies": {
     "@koa/router": "^10.0.0",
