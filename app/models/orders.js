@@ -44,7 +44,7 @@ const orderSchema = new Schema(
       trim: true,
       required: true
     },
-    dayOfWeek: {
+    week: {
       type: Number,
       required: true
     },

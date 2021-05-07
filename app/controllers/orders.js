@@ -53,8 +53,8 @@ class OrdersCtl {
 
     // 惩罚
     const { userid, date } = ctx.request.body
-    const dayOfWeek = dayjs(date).week()
-    const banUser = await findUser({ userid, banWeek: dayOfWeek })
+    const week = dayjs(date).week()
+    const banUser = await findUser({ userid, banWeek: week })
     if (banUser.length) ctx.throw(403, BAN_ORDER)
 
     // 判断今日预约过未
@@ -63,7 +63,7 @@ class OrdersCtl {
     if (todayOrders.length) ctx.throw(403, ONE_DAY_ONE_TIME)
 
     // 判断这周预约是否超过两单
-    const weekOrders = await find({ userid, dayOfWeek, status })
+    const weekOrders = await find({ userid, week, status })
     if (weekOrders.length >= 2) ctx.throw(403, ONE_WEEK_TWO_TIMES)
 
     // 该时间段是否有剩余
@@ -84,7 +84,7 @@ class OrdersCtl {
 
       // 创建预约订单
       const params = copyObj(ctx.request.body)
-      params.dayOfWeek = dayOfWeek
+      params.week = week
       params.status = 1
       params.dingOneHour = false
       params.dingHalfHour = false
