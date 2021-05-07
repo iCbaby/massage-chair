@@ -1,6 +1,6 @@
 /**
  * @description 获取现在的日期时间
- * @author iC
+ * @author 飞翔
  */
 
 const dayjs = require('dayjs')

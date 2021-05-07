@@ -1,6 +1,6 @@
 /**
  * @description mongo数据库配置
- * @author iC
+ * @author 飞翔
  */
 
 // const connectionStr =

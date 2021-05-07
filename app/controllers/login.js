@@ -1,6 +1,6 @@
 /**
  * @description login controller
- * @author iC
+ * @author 飞翔
  */
 
 const axios = require('axios').default

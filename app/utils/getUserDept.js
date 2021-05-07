@@ -1,6 +1,6 @@
 /**
  * @description 拿用户部门信息
- * @author iC
+ * @author 飞翔
  */
 
 const axios = require('axios').default

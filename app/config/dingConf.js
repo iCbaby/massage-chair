@@ -1,6 +1,6 @@
 /**
  * @description 钉钉配置
- * @author iC
+ * @author 飞翔
  */
 
 const AGENT_ID = '868667602'

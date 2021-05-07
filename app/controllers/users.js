@@ -1,6 +1,6 @@
 /**
  * @description user controller
- * @author iC
+ * @author 飞翔
  */
 
 const { getUserInfo } = require('../utils/getUserInfo')

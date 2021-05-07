@@ -1,6 +1,6 @@
 /**
  * @description 深复制
- * @author iC
+ * @author 飞翔
  */
 
 const { checkType } = require('./checkType')

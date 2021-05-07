@@ -1,6 +1,6 @@
 /**
  * @description user schema 用户
- * @author iC
+ * @author 飞翔
  */
 
 const mongoose = require('mongoose')

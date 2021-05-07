@@ -1,6 +1,6 @@
 /**
  * @description 加密
- * @author iC
+ * @author 飞翔
  */
 
 const crypto = require('crypto')

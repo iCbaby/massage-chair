@@ -1,6 +1,6 @@
 /**
  * @description reservation service
- * @author iC
+ * @author 飞翔
  */
 
 const ReservationModel = require('../models/reservations')

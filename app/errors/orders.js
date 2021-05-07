@@ -1,6 +1,6 @@
 /**
  * @description user 错误信息
- * @author iC
+ * @author 飞翔
  */
 
 module.exports = {

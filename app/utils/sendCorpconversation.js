@@ -1,6 +1,6 @@
 /**
  * @description 发钉钉通知
- * @author iC
+ * @author 飞翔
  */
 
 const axios = require('axios').default

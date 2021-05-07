@@ -1,6 +1,6 @@
 /**
  * @description json schema 校验
- * @author iC
+ * @author 飞翔
  */
 
 const Ajv = require('ajv').default

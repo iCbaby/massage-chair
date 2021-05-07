@@ -1,6 +1,6 @@
 /**
  * @description 校验必须参数
- * @author iC
+ * @author 飞翔
  */
 
 const { checkType } = require('./checkType')

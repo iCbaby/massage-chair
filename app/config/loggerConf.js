@@ -1,6 +1,6 @@
 /**
  * @description logger配置
- * @author iC
+ * @author 飞翔
  */
 
 const loggerConfig = {

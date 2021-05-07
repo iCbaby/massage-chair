@@ -1,6 +1,6 @@
 /**
  * @description login 数据格式校验
- * @author iC
+ * @author 飞翔
  */
 
 const validate = require('./validate')

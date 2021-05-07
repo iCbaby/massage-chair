@@ -1,6 +1,6 @@
 /**
  * @description json schema 验证中间件
- * @author iC
+ * @author 飞翔
  */
 
 const { SCHEMA_FAILED } = require('../errors/common')

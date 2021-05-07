@@ -1,6 +1,6 @@
 /**
  * @description 判断类型
- * @author iC
+ * @author 飞翔
  */
 
 /**

@@ -1,6 +1,6 @@
 /**
  * @description order schema 预约订单
- * @author iC
+ * @author 飞翔
  */
 
 const mongoose = require('mongoose')

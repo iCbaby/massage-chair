@@ -1,6 +1,6 @@
 /**
  * @description user service
- * @author iC
+ * @author 飞翔
  */
 
 const UserModel = require('../models/users')
