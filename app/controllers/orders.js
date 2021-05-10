@@ -32,8 +32,7 @@ class OrdersCtl {
    * @param {Object} ctx 上下文
    */
   async findOrders (ctx) {
-    const { userid } = ctx.query
-    const orders = await find({ userid })
+    const orders = await find(ctx.query)
     const currentTime = getTime()
 
     ctx.body = {
