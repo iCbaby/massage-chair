@@ -17,8 +17,15 @@ class ReservationsCtl {
     if (!date) ctx.throw(412, `${NEED_SCHEMA_PARAMS}: date`)
     if (!floorName) ctx.throw(412, `${NEED_SCHEMA_PARAMS}: floorName`)
 
-    const currentTime = getTime()
-    const query = { date, floorName }
+    const currentTime = getTime() // 模拟获取预约的时间
+    const currentStamp = new Date().getTime() // 模拟获取预约的时间
+    const query = {
+      date,
+      floorName,
+      startTimeStamp: {
+        $gt: currentStamp + 300000
+      }
+    }
 
     const reservations = await find(query)
     ctx.body = {

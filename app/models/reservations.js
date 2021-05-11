@@ -50,6 +50,10 @@ const reservationSchema = new Schema(
       trim: true,
       default: ''
     },
+    startTimeStamp: {
+      type: Number,
+      required: true
+    },
     remark: {
       type: String,
       trim: true,

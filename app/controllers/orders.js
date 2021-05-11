@@ -33,7 +33,7 @@ class OrdersCtl {
    */
   async findOrders (ctx) {
     const orders = await find(ctx.query)
-    const currentTime = getTime()
+    const currentTime = getTime() // 模拟获取订单的时间
 
     ctx.body = {
       currentTime,

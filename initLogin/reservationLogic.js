@@ -13,7 +13,8 @@ async function initReservation () {
           timing: subItem.timing,
           startTime: subItem.timing.split('-')[0] + ':00',
           endTime: subItem.timing.split('-')[1] + ':00',
-          date: tItem
+          date: tItem,
+          startTimeStamp: new Date(tItem + ' ' + subItem.timing.split('-')[0] + ':00')
         }
         list.push(new Reservation(obj).save())
       })
