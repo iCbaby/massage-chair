@@ -34,10 +34,16 @@ class OrdersCtl {
   async findOrders (ctx) {
     const orders = await find(ctx.query)
     const currentTime = getTime() // 模拟获取订单的时间
+    const currentStamp = new Date().getTime() // 模拟获取订单的时间
+
+    const formatOrders = orders.map(item => {
+      if (currentStamp >= item.startTimeStamp) item.status = 2
+      return item
+    })
 
     ctx.body = {
       currentTime,
-      orders,
+      orders: formatOrders,
       msg: 'ok'
     }
   }
