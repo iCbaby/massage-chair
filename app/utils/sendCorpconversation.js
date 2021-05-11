@@ -14,10 +14,10 @@ const { getTime } = require('../utils/getTime')
  */
 async function sendCorpconversation ({ userid, date, floorName, timing, hourText }) {
   const str = hourText
-    ? `亲爱的大赢家，您预约的空中舒压舱将在${hourText}开始，请提前5分钟至${floorName}并扫码签到哦！一周内若未签到2次，将被锁定一周的预约资格！`
+    ? `亲爱的大赢家，您预约的空中舒压舱将在${hourText}后开始，请提前5分钟至${floorName}并扫码签到哦！一周内若未签到2次，将被锁定一周的预约资格！`
     : `亲爱的大赢家，您预约的空中舒压舱将在${date} ${
         timing.split('-')[0]
-      }:00后开始，请提前5分钟至${floorName}并扫码签到哦！一周内若未签到2次，将被锁定一周的预约资格！`
+      }:00开始，请提前5分钟至${floorName}并扫码签到哦！一周内若未签到2次，将被锁定一周的预约资格！`
 
   const url = await getCorpconversationUrl()
   await axios.post(url, {
