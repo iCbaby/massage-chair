@@ -33,22 +33,16 @@ async function ordersSchedule () {
     if (ordersOne.length) {
       await updateMany(queryOneHour, { $set: { dingOneHour: true } })
 
-      let oneHourUseridList = ''
-      ordersOne.forEach(item => (oneHourUseridList += item.userid + ','))
-      oneHourUseridList = oneHourUseridList.substring(0, oneHourUseridList.length - 1)
-      sendCorpconversation({ ...ordersOne[0]._doc, userid: oneHourUseridList, hourText: '一小时' })
+      ordersOne.forEach(item => {
+        sendCorpconversation({ ...item._doc, hourText: '一小时' })
+      })
     }
 
     if (ordersHalf.length) {
       await updateMany(queryHalfHour, { $set: { dingHalfHour: true } })
 
-      let halfHourUseridList = ''
-      ordersHalf.forEach(item => (halfHourUseridList += item.userid + ','))
-      halfHourUseridList = halfHourUseridList.substring(0, halfHourUseridList.length - 1)
-      sendCorpconversation({
-        ...ordersHalf[0]._doc,
-        userid: halfHourUseridList,
-        hourText: '半小时'
+      ordersHalf.forEach(item => {
+        sendCorpconversation({ ...item._doc, hourText: '半小时' })
       })
     }
   })
