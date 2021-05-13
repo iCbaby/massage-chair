@@ -37,7 +37,7 @@ class OrdersCtl {
     const currentStamp = new Date().getTime() // 模拟获取订单的时间
 
     const formatOrders = orders.map(item => {
-      if (currentStamp >= item.startTimeStamp) item.status = 2
+      if (currentStamp >= item.startTimeStamp && item.status === 1) item.status = 2
       return item
     })
 
